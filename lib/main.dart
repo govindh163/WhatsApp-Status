@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:status_download/includes/myNavigationDrawer.dart';
 import 'package:status_download/pages/about_us.dart';
 import 'package:status_download/pages/dashboard.dart';
@@ -14,7 +15,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
+  PanelController _panelController;
   Future<bool> _readwritePermissionChecker;
   final PermissionHandler _permissionHandler = PermissionHandler();
   final PermissionGroup _permissionGroup=PermissionGroup.storage;
@@ -52,13 +53,13 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'Status Downloader',
       theme: ThemeData(
-        primarySwatch: Colors.indigo,
+        primarySwatch: Colors.lightGreen,
       ),
       debugShowCheckedModeBanner: false,
       home: MyHome(),
       routes: <String, WidgetBuilder>{
         "/home": (BuildContext context) => DashboardScreen(),
-        "/photos": (BuildContext context) => Photos(),
+        "/photos": (BuildContext context) => Photos(controller: _panelController,ismodal:true),
         "/videos": (BuildContext context) => VideoListView(),
         "/aboutus": (BuildContext context) => AboutScreen(),
       },
@@ -72,17 +73,32 @@ class MyHome extends StatefulWidget {
 }
 
 class _MyHomeState extends State<MyHome> {
-  
+  PanelController _panelController;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Download WhatsApp Status"),
-        //elevation: defaultTargetPlatform == TargetPlatform.android ? 5.0 : 0.0,
-      ),
-      body: DashboardScreen(),
-      drawer: Drawer(
-        child: MyNavigationDrawer(),
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("Download WhatsApp Status"),
+          //elevation: defaultTargetPlatform == TargetPlatform.android ? 5.0 : 0.0,
+          bottom: TabBar(
+            labelColor: Colors.white,
+            tabs: <Widget>[
+              Text("Photos",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22),),
+              Text("Videos",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22),),
+            ],
+          ),
+        ),
+        body: TabBarView(
+          children: <Widget>[
+            Photos(controller: _panelController,),
+            VideoListView()
+          ],
+        ),
+        drawer: Drawer(
+          child: MyNavigationDrawer(),
+        ),
       ),
     );
   }

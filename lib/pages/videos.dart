@@ -22,9 +22,9 @@ class VideoListViewState extends State<VideoListView> {
   Widget build(BuildContext context) {
     if(!Directory("${_videoDir.path}").existsSync()) {
       return Scaffold(
-        appBar: AppBar(
-          title: Text("Whatsapp Video Status"),
-        ),
+//        appBar: AppBar(
+//          title: Text("Whatsapp Video Status"),
+//        ),
         body: Container(
           padding: EdgeInsets.only(bottom: 60.0),
           child: Center(
@@ -37,9 +37,9 @@ class VideoListViewState extends State<VideoListView> {
     }
     else{
       return Scaffold(
-        appBar: AppBar(
-          title: Text("Whatsapp Video Status"),
-        ),
+//        appBar: AppBar(
+//          title: Text("Whatsapp Video Status"),
+//        ),
         body: VideoGrid(directory: _videoDir),
       );
     }

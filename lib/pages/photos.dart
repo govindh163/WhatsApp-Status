@@ -8,8 +8,9 @@ final Directory _photoDir = new Directory('/storage/emulated/0/WhatsApp/Media/.S
 
 class Photos extends StatefulWidget {
   final PanelController _controller;
+ final bool ismodal;
 
-  Photos({@required PanelController controller})
+  Photos({@required PanelController controller,this.ismodal})
       : _controller = controller;
   @override
   PhotosState createState() {
@@ -49,17 +50,17 @@ class PhotosState extends State<Photos> {
 
       if (imageList.length > 0) {
         return Scaffold(
-          appBar: AppBar(
-            title: Text("Whatsapp Photo Status"),
-           actions: <Widget>[
-             GestureDetector(
-               onTap: () => _controller.close(),
-               child: HideIcon(
-                 color: Colors.white,
-               ),
-             ),
-           ],
-          ),
+//          appBar: AppBar(
+//            title: Text("Whatsapp Photo Status"),
+////           actions: <Widget>[
+////             GestureDetector(
+////               onTap: () => _controller.close(),
+////               child: HideIcon(
+////                 color: Colors.white,
+////               ),
+////             ),
+////           ],
+//          ),
           body: Container(
             padding: EdgeInsets.only(bottom: 60.0),
             child: StaggeredGridView.countBuilder(

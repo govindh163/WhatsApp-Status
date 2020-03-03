@@ -8,13 +8,13 @@ import 'package:video_player/video_player.dart';
 class PlayStatusVideo extends StatefulWidget {
   final String videoFile;
   PlayStatusVideo(this.videoFile);
-  
+
   @override
   _PlayStatusVideoState createState() => _PlayStatusVideoState();
 }
 
 class _PlayStatusVideoState extends State<PlayStatusVideo> {
-
+String url="https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4";
   @override
   void initState() {
     super.initState();
@@ -137,13 +137,13 @@ class _PlayStatusVideoState extends State<PlayStatusVideo> {
                 videoSrc: widget.videoFile,
               ),
             ),
-            Container(
-              child: StatusVideoNetwork(
-                videoPlayerController: VideoPlayerController.network("https://www.sample-videos.com/video123/mp4/720/big_buck_bunny_720p_20mb.mp4"),
-                looping: true,
-//                videoSrc: widget.videoFile,
-              ),
-            ),
+//            Container(
+//              child: StatusVideoNetwork(
+//                videoPlayerController: VideoPlayerController.network(url ),
+//                looping: true,
+////                videoSrc: widget.videoFile,
+//              ),
+//            ),
           ],
         ),
       ),
@@ -175,6 +175,9 @@ class _StatusVideoNetworkState extends State<StatusVideoNetwork> {
   @override
   void initState() {
     super.initState();
+
+    //widget.videoPlayerController.addListener(checkVideo);
+
     _chewieController = ChewieController(
         videoPlayerController: widget.videoPlayerController,
         autoInitialize:true,
@@ -188,10 +191,29 @@ class _StatusVideoNetworkState extends State<StatusVideoNetwork> {
     );
 
   }
-
+//  void checkVideo() {
+//    // Implement your calls inside these conditions' bodies :
+//    if (widget.videoPlayerController.value.position ==
+//        Duration(seconds: 0, minutes: 0, hours: 0)) {
+//      Scaffold.of(context).showSnackBar(SnackBar(
+//        content: Text("Video Started"),
+//        duration: Duration(seconds: 3),
+//      ));
+//      print('video Started');
+//
+//    }
+//    if (widget.videoPlayerController.value.position ==
+//        Duration(seconds: 9, minutes: 0, hours: 0)) {
+//      print('video Started at 23');
+//    }
+//    if (widget.videoPlayerController.value.position ==
+//        widget.videoPlayerController.value.duration) {
+//      print('video Ended');
+//    }
+//  }
   @override
   Widget build(BuildContext context) {
-
+   // print("dur"+widget.videoPlayerController.value.position.toString());
     return Container(
       padding: EdgeInsets.only(top: 0),
       child: Column(

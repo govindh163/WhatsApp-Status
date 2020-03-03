@@ -26,6 +26,7 @@ class _StatusVideoState extends State<StatusVideo> {
 
   @override
   void initState() {
+    print("dur2 "+widget.videoPlayerController.value.position.inMilliseconds.toString());
     super.initState();
     _chewieController = ChewieController(
       videoPlayerController: widget.videoPlayerController,

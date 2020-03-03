@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:path_provider/path_provider.dart';
 
 class ViewPhotos extends StatefulWidget {
   final String imgPath;
@@ -56,7 +57,7 @@ class _ViewPhotosState extends State<ViewPhotos> {
                     padding: EdgeInsets.all(15.0),
                     child: Column(
                       children: <Widget>[
-                        Text("Great, Saved in Gallary", style: TextStyle(
+                        Text("Great, Saved in Gallery", style: TextStyle(
                           fontSize:20,
                           fontWeight: FontWeight.bold
                           ),
@@ -109,30 +110,30 @@ class _ViewPhotosState extends State<ViewPhotos> {
             ),), //`Text` to display
             onPressed: () async{
               _onLoading(true,"");
-//                File originalImageFile1 = File(widget.imgPath);
-//
-//                Directory directory = await getExternalStorageDirectory();
-//                if(!Directory("${directory.path}/Downloaded Status/Images").existsSync()){
-//                  Directory("${directory.path}/Downloaded Status/Images").createSync(recursive: true);
-//                }
-//                String path = directory.path;
-//                String curDate = DateTime.now().toString();
-//                String newFileName = "$path/Downloaded Status/Images/IMG-$curDate.jpg";
-//                print(newFileName);
-//                await originalImageFile1.copy(newFileName);
+                File originalImageFile1 = File(widget.imgPath);
 
-                Uri myUri = Uri.parse(widget.imgPath);
-                File originalImageFile = new File.fromUri(myUri);
-                Uint8List bytes;
-                await originalImageFile.readAsBytes().then((value) {
-                  bytes = Uint8List.fromList(value);
-                  print('reading of bytes is completed');
-                }).catchError((onError) {
-                  print('Exception Error while reading audio from path:' +
-                      onError.toString());
-                });
-                final result = await ImageGallerySaver.saveImage(Uint8List.fromList(bytes));
-                print(result);
+                Directory directory = await getExternalStorageDirectory();
+                if(!Directory("${directory.path}/Downloaded Status/Images").existsSync()){
+                  Directory("${directory.path}/Downloaded Status/Images").createSync(recursive: true);
+                }
+                String path = directory.path;
+                String curDate = DateTime.now().toString();
+                String newFileName = "$path/Downloaded Status/Images/IMG-$curDate.jpg";
+                print(newFileName);
+                await originalImageFile1.copy(newFileName);
+
+//                Uri myUri = Uri.parse(widget.imgPath);
+//                File originalImageFile = new File.fromUri(myUri);
+//                Uint8List bytes;
+//                await originalImageFile.readAsBytes().then((value) {
+//                  bytes = Uint8List.fromList(value);
+//                  print('reading of bytes is completed');
+//                }).catchError((onError) {
+//                  print('Exception Error while reading audio from path:' +
+//                      onError.toString());
+//                });
+//                final result = await ImageGallerySaver.saveImage(Uint8List.fromList(bytes));
+//                print(result);
                 _onLoading(false,"If Image not available in gallary\n\nYou can find all images at");
             },
           ),
