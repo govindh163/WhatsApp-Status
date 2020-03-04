@@ -32,7 +32,7 @@ class MyNavigationDrawer extends StatelessWidget {
               data: _iconcolor,
               child: Icon(Icons.photo_library),
           ),
-          title: Text("WhatsApp Photo Status",style: _menutextcolor),
+          title: Text("Download Photo Status",style: _menutextcolor),
           onTap: () {
             Navigator.of(context).pop();
             Navigator.of(context).pushNamed("/photos");
@@ -43,7 +43,7 @@ class MyNavigationDrawer extends StatelessWidget {
               data: _iconcolor,
               child: Icon(Icons.video_library),
           ),
-          title: Text("WhatsApp Video Status",style: _menutextcolor),
+          title: Text("Download Video Status",style: _menutextcolor),
           onTap: () {
             Navigator.of(context).pop();
             Navigator.of(context).pushNamed("/videos");

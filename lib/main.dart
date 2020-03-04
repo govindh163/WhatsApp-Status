@@ -60,7 +60,7 @@ class _MyAppState extends State<MyApp> {
       routes: <String, WidgetBuilder>{
         "/home": (BuildContext context) => DashboardScreen(),
         "/photos": (BuildContext context) => Photos(controller: _panelController,ismodal:true),
-        "/videos": (BuildContext context) => VideoListView(),
+        "/videos": (BuildContext context) => VideoListView(ismodal: true,),
         "/aboutus": (BuildContext context) => AboutScreen(),
       },
     );
@@ -79,6 +79,7 @@ class _MyHomeState extends State<MyHome> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        backgroundColor: Color(0xffE1E6EC),
         appBar: AppBar(
           title: Text("Download WhatsApp Status"),
           //elevation: defaultTargetPlatform == TargetPlatform.android ? 5.0 : 0.0,
@@ -92,8 +93,8 @@ class _MyHomeState extends State<MyHome> {
         ),
         body: TabBarView(
           children: <Widget>[
-            Photos(controller: _panelController,),
-            VideoListView()
+            Photos(controller: _panelController,ismodal: false,),
+            VideoListView(ismodal: false,)
           ],
         ),
         drawer: Drawer(

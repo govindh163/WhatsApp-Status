@@ -32,6 +32,7 @@ class PhotosState extends State<Photos> {
   Widget build(BuildContext context) {
     if(!Directory("${_photoDir.path}").existsSync()) {
       return Scaffold(
+        backgroundColor: Color(0xffE1E6EC),
         appBar: AppBar(
           title: Text("Whatsapp Photo Status"),
         ),
@@ -50,17 +51,18 @@ class PhotosState extends State<Photos> {
 
       if (imageList.length > 0) {
         return Scaffold(
-//          appBar: AppBar(
-//            title: Text("Whatsapp Photo Status"),
-////           actions: <Widget>[
-////             GestureDetector(
-////               onTap: () => _controller.close(),
-////               child: HideIcon(
-////                 color: Colors.white,
-////               ),
-////             ),
-////           ],
-//          ),
+          backgroundColor: Color(0xffE1E6EC),
+          appBar: widget.ismodal?AppBar(
+            title: Text("Whatsapp Photo Status"),
+//           actions: <Widget>[
+//             GestureDetector(
+//               onTap: () => _controller.close(),
+//               child: HideIcon(
+//                 color: Colors.white,
+//               ),
+//             ),
+//           ],
+          ):null,
           body: Container(
             padding: EdgeInsets.only(bottom: 60.0),
             child: StaggeredGridView.countBuilder(
@@ -96,9 +98,10 @@ class PhotosState extends State<Photos> {
          );
       } else {
         return Scaffold(
-          appBar: AppBar(
+          backgroundColor: Color(0xffE1E6EC),
+          appBar: widget.ismodal?AppBar(
             title: Text("Whatsapp Photo Status"),
-          ),
+          ):SizedBox(),
           body: GestureDetector(
             child: Center(
               child: Container(

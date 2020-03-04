@@ -15,7 +15,7 @@ class _AboutScreenState extends State<AboutScreen> {
   }
   
   _launchURL() async {
-    const url = 'https://flutterian.com';
+    const url = 'https://smartiapps.com';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -31,6 +31,7 @@ class _AboutScreenState extends State<AboutScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 238, 238, 238),
       appBar: AppBar(
         title: Text("About us"),
       ),
@@ -40,58 +41,32 @@ class _AboutScreenState extends State<AboutScreen> {
           children: <Widget>[
             //Welcome and Balance Info
             Container(
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Colors.teal[800],
-                      Colors.teal[700],
-                      Colors.teal[600],
-                      Colors.teal[500],
-                      Colors.teal[400],
-                      Colors.teal[800],
-                    ]
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey,
-                      offset: Offset.zero,
-                      blurRadius: 3.0,
-                      spreadRadius: 0.0,
-                    ),
-                  ],
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text("About Us",style: TextStyle(
-                      fontSize:24.0,
-                      color:Colors.white,
-                    )),
-                  ],
-                ),
-              ),
-            ),
-            Container(
               padding: EdgeInsets.all(20.0),
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-
                   children: <Widget>[
                     Text(
-                    "Your About Us Content"
-                    "\n\nAnother Line of About us content",
+                    "We Are the best Website and Mobile App Development Company",
                     style: TextStyle(
                       fontSize:18.0,
                       color:Colors.indigo,
                     )),
+                    SizedBox(height: 40,),
                     Container(
                       padding: EdgeInsets.symmetric(vertical: 20.0),
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+                        width: 350,
+                        height: 120,
+                        decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 238, 238, 238),
+                            boxShadow: [
+                              BoxShadow(offset: Offset(10, 10),color: Color.fromARGB(80, 0, 0, 0),blurRadius: 10),
+                              BoxShadow(offset: Offset(-10, -10),color: Color.fromARGB(150, 255, 255, 255),blurRadius: 10)
+                            ]
+                        ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
@@ -100,11 +75,11 @@ class _AboutScreenState extends State<AboutScreen> {
                                 _launchURL();
                               },
                               padding: EdgeInsets.all(20.0),
-                              child: Text("Read More Link",style: TextStyle(
+                              child: Text("Tap to Read More",style: TextStyle(
                                 fontSize:24.0,
                                 color:Colors.white,
                               )),
-                              color: Colors.indigo,
+                              color: Colors.white30,
                             ),
                           ],
                         ),

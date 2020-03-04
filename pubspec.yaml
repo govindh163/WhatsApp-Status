@@ -21,6 +21,7 @@ dependencies:
   image_gallery_saver: ^1.2.2
   permission_handler: ^4.0.0
   sliding_up_panel: ^0.3.4
+  neumorphic: ^0.1.2
 
 dev_dependencies:
   flutter_test:

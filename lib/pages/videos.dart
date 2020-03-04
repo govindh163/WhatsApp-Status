@@ -5,6 +5,9 @@ import 'package:thumbnails/thumbnails.dart';
 final Directory _videoDir = new Directory('/storage/emulated/0/WhatsApp/Media/.Statuses');
 
 class VideoListView extends StatefulWidget {
+  final bool ismodal;
+
+  const VideoListView({Key key, this.ismodal}) : super(key: key);
 
   @override
   VideoListViewState createState() {
@@ -22,9 +25,10 @@ class VideoListViewState extends State<VideoListView> {
   Widget build(BuildContext context) {
     if(!Directory("${_videoDir.path}").existsSync()) {
       return Scaffold(
-//        appBar: AppBar(
-//          title: Text("Whatsapp Video Status"),
-//        ),
+        backgroundColor: Color(0xffE1E6EC),
+        appBar: widget.ismodal?AppBar(
+          title: Text("Whatsapp Video Status"),
+        ):null,
         body: Container(
           padding: EdgeInsets.only(bottom: 60.0),
           child: Center(
@@ -37,9 +41,10 @@ class VideoListViewState extends State<VideoListView> {
     }
     else{
       return Scaffold(
-//        appBar: AppBar(
-//          title: Text("Whatsapp Video Status"),
-//        ),
+        backgroundColor: Color(0xffE1E6EC),
+        appBar: widget.ismodal?AppBar(
+          title: Text("Whatsapp Video Status"),
+        ):null,
         body: VideoGrid(directory: _videoDir),
       );
     }

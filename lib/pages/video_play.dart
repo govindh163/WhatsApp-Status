@@ -57,7 +57,7 @@ String url="https://flutter.github.io/assets-for-api-docs/assets/videos/butterfl
                     padding: EdgeInsets.all(15.0),
                     child: Column(
                       children: <Widget>[
-                        Text("Great, Saved in Gallary", style: TextStyle(
+                        Text("Great, Saved in Gallery", style: TextStyle(
                           fontSize:20,
                           fontWeight: FontWeight.bold
                           ),
@@ -87,6 +87,7 @@ String url="https://flutter.github.io/assets-for-api-docs/assets/videos/butterfl
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffE1E6EC),
       appBar:AppBar(
         elevation: 0.0,
         backgroundColor: Colors.transparent,
@@ -98,34 +99,7 @@ String url="https://flutter.github.io/assets-for-api-docs/assets/videos/butterfl
           ),
           onPressed: ()=> Navigator.of(context).pop(),
         ),
-        title: Container(
-          padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: 10.0),
-          child:  FlatButton.icon(
-            color:Colors.indigo,
-            textColor: Colors.white,
-            icon: Icon(Icons.file_download),
-            padding: EdgeInsets.all(10.0),
-            label: Text('Download', style: TextStyle(
-              fontSize:16.0
-            ),), //`Text` to display
-            onPressed: () async{
-              _onLoading(true,"");
 
-              File originalVideoFile = File(widget.videoFile);
-              Directory directory = await getExternalStorageDirectory();
-              if(!Directory("${directory.path}/Downloaded Status/Videos").existsSync()){
-                Directory("${directory.path}/Downloaded Status/Videos").createSync(recursive: true);
-              }
-              String path = directory.path;
-              String curDate = DateTime.now().toString();
-              String newFileName = "$path/Downloaded Status/Videos/VIDEO-$curDate.mp4";
-              print(newFileName);
-              await originalVideoFile.copy(newFileName);
-
-              _onLoading(false,"If Video not available in gallary\n\nYou can find all videos at");
-            },
-          ),
-        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -135,6 +109,34 @@ String url="https://flutter.github.io/assets-for-api-docs/assets/videos/butterfl
                 videoPlayerController: VideoPlayerController.file(File(widget.videoFile)),
                 looping: true,
                 videoSrc: widget.videoFile,
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: 10.0),
+              child:  FlatButton.icon(
+                color:Colors.indigo,
+                textColor: Colors.white,
+                icon: Icon(Icons.file_download),
+                padding: EdgeInsets.all(10.0),
+                label: Text('Download', style: TextStyle(
+                    fontSize:16.0
+                ),), //`Text` to display
+                onPressed: () async{
+                  _onLoading(true,"");
+
+                  File originalVideoFile = File(widget.videoFile);
+                  Directory directory = await getExternalStorageDirectory();
+                  if(!Directory("${directory.path}/Downloaded Status/Videos").existsSync()){
+                    Directory("${directory.path}/Downloaded Status/Videos").createSync(recursive: true);
+                  }
+                  String path = directory.path;
+                  String curDate = DateTime.now().toString();
+                  String newFileName = "$path/Downloaded Status/Videos/VIDEO-$curDate.mp4";
+                  print(newFileName);
+                  await originalVideoFile.copy(newFileName);
+
+                  _onLoading(false,"You can find all downloaded videos at");
+                },
               ),
             ),
 //            Container(

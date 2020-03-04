@@ -59,6 +59,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffE1E6EC),
       body: SlidingUpPanel(
         slideDirection: SlideDirection.UP,
 
