@@ -81,7 +81,7 @@ class _MyHomeState extends State<MyHome> {
       child: Scaffold(
         backgroundColor: Color(0xffE1E6EC),
         appBar: AppBar(
-          title: Text("Download WhatsApp Status"),
+          title: Text("Download WhatsApp Statuses",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: Colors.white),),
           //elevation: defaultTargetPlatform == TargetPlatform.android ? 5.0 : 0.0,
           bottom: TabBar(
             labelColor: Colors.white,
@@ -103,4 +103,5 @@ class _MyHomeState extends State<MyHome> {
       ),
     );
   }
+
 }

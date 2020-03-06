@@ -7,6 +7,7 @@ import 'package:video_player/video_player.dart';
 
 class PlayStatusVideo extends StatefulWidget {
   final String videoFile;
+
   PlayStatusVideo(this.videoFile);
 
   @override
@@ -14,73 +15,106 @@ class PlayStatusVideo extends StatefulWidget {
 }
 
 class _PlayStatusVideoState extends State<PlayStatusVideo> {
-String url="https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4";
+//String url="https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4";
   @override
   void initState() {
     super.initState();
-    print("here is what you looking for:"+widget.videoFile);
+    print("here is what you looking for:" + widget.videoFile);
   }
 
   void dispose() {
     super.dispose();
   }
 
-  void _onLoading(bool t,String str){
-    if(t){
+  void _onLoading(bool t, String str) {
+    if (t) {
       showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context){
-          return SimpleDialog(
-            children: <Widget>[
-                Center(
-                  child: Container(
-                    padding: EdgeInsets.all(10.0),
-                    child: CircularProgressIndicator()),
-                ),
-              ],
-          );
-        }
-      );
-    }else{
-      Navigator.pop(context);
-      showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context){
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SimpleDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return SimpleDialog(
               children: <Widget>[
                 Center(
                   child: Container(
-                    padding: EdgeInsets.all(15.0),
-                    child: Column(
-                      children: <Widget>[
-                        Text("Great, Saved in Gallery", style: TextStyle(
-                          fontSize:20,
-                          fontWeight: FontWeight.bold
-                          ),
-                        ),
-                        Padding(padding: EdgeInsets.all(10.0),),
-                        Text(str,style:TextStyle( fontSize:16.0, )),
-                        Padding(padding: EdgeInsets.all(10.0),),
-                        Text("FileManager > Downloaded Status",style:TextStyle( fontSize:16.0, color: Colors.teal )),
-                        Padding(padding: EdgeInsets.all(10.0),),
-                        MaterialButton(
-                          child: Text("Close"),
-                          color:Colors.teal,
-                          textColor: Colors.white,
-                          onPressed:  ()=> Navigator.pop(context),
-                        )
-                      ],
-                    ),
-                  ),
+                      padding: EdgeInsets.all(10.0),
+                      child: CircularProgressIndicator()),
                 ),
               ],
-            ),
-          );
-        });
+            );
+          });
+    } else {
+      Navigator.pop(context);
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SimpleDialog(
+                children: <Widget>[
+                  Center(
+                    child: Container(
+                      padding: EdgeInsets.all(15.0),
+                      child: Column(
+                        children: <Widget>[
+                          Text(
+                            "Great, Saved in Gallery",
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(10.0),
+                          ),
+                          Text(str,
+                              style: TextStyle(
+                                fontSize: 16.0,
+                              )),
+                          Padding(
+                            padding: EdgeInsets.all(10.0),
+                          ),
+                          Text("FileManager > Downloaded Status",
+                              style: TextStyle(
+                                  fontSize: 16.0, color: Colors.teal)),
+                          Padding(
+                            padding: EdgeInsets.all(10.0),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                                color: Color(0XFFEFF3F6),
+                                borderRadius: BorderRadius.circular(100.0),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Color.fromRGBO(0, 0, 0, 0.1),
+                                      offset: Offset(6, 2),
+                                      blurRadius: 6.0,
+                                      spreadRadius: 3.0),
+                                  BoxShadow(
+                                      color: Color.fromRGBO(255, 255, 255, 0.9),
+                                      offset: Offset(-6, -2),
+                                      blurRadius: 6.0,
+                                      spreadRadius: 3.0)
+                                ]),
+                            child: ListTile(
+                              contentPadding: EdgeInsets.only(left: 100),
+                              title: Text(
+                                "Close",
+                                style: TextStyle(
+                                    fontStyle: FontStyle.italic,
+                                    color: Colors.redAccent,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
+                              ),
+                              onTap: () => Navigator.pop(context),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          });
     }
   }
 
@@ -88,7 +122,7 @@ String url="https://flutter.github.io/assets-for-api-docs/assets/videos/butterfl
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xffE1E6EC),
-      appBar:AppBar(
+      appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.transparent,
         leading: IconButton(
@@ -97,48 +131,104 @@ String url="https://flutter.github.io/assets-for-api-docs/assets/videos/butterfl
             Icons.close,
             color: Colors.black,
           ),
-          onPressed: ()=> Navigator.of(context).pop(),
+          onPressed: () => Navigator.of(context).pop(),
         ),
-
       ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             Container(
               child: StatusVideo(
-                videoPlayerController: VideoPlayerController.file(File(widget.videoFile)),
+                videoPlayerController:
+                    VideoPlayerController.file(File(widget.videoFile)),
                 looping: true,
                 videoSrc: widget.videoFile,
               ),
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: 10.0),
-              child:  FlatButton.icon(
-                color:Colors.indigo,
-                textColor: Colors.white,
-                icon: Icon(Icons.file_download),
-                padding: EdgeInsets.all(10.0),
-                label: Text('Download', style: TextStyle(
-                    fontSize:16.0
-                ),), //`Text` to display
-                onPressed: () async{
-                  _onLoading(true,"");
+                decoration: BoxDecoration(
+                    color: Color(0XFFEFF3F6),
+                    borderRadius: BorderRadius.circular(100.0),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Color.fromRGBO(0, 0, 0, 0.1),
+                          offset: Offset(6, 2),
+                          blurRadius: 6.0,
+                          spreadRadius: 3.0),
+                      BoxShadow(
+                          color: Color.fromRGBO(255, 255, 255, 0.9),
+                          offset: Offset(-6, -2),
+                          blurRadius: 6.0,
+                          spreadRadius: 3.0)
+                    ]),
+                child: ListTile(
+                  onTap: () async {
+                    _onLoading(true, "");
 
-                  File originalVideoFile = File(widget.videoFile);
-                  Directory directory = await getExternalStorageDirectory();
-                  if(!Directory("${directory.path}/Downloaded Status/Videos").existsSync()){
-                    Directory("${directory.path}/Downloaded Status/Videos").createSync(recursive: true);
-                  }
-                  String path = directory.path;
-                  String curDate = DateTime.now().toString();
-                  String newFileName = "$path/Downloaded Status/Videos/VIDEO-$curDate.mp4";
-                  print(newFileName);
-                  await originalVideoFile.copy(newFileName);
+                    File originalVideoFile = File(widget.videoFile);
+                    Directory directory = await getExternalStorageDirectory();
+                    if (!Directory("${directory.path}/Downloaded Status/Videos")
+                        .existsSync()) {
+                      Directory("${directory.path}/Downloaded Status/Videos")
+                          .createSync(recursive: true);
+                    }
+                    String path = directory.path;
+                    String curDate = DateTime.now().toString();
+                    String newFileName =
+                        "$path/Downloaded Status/Videos/VIDEO-$curDate.mp4";
+                    print(newFileName);
+                    await originalVideoFile.copy(newFileName);
 
-                  _onLoading(false,"You can find all downloaded videos at");
-                },
-              ),
-            ),
+                    _onLoading(false, "You can find all downloaded videos at");
+                  },
+                  contentPadding: EdgeInsets.only(left: 150),
+                  title: Row(
+                    children: <Widget>[
+                      Icon(Icons.file_download),
+                      SizedBox(
+                        width: 3,
+                      ),
+                      Text(
+                        "Download",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                    ],
+                  ),
+                )),
+//            Container(
+//              padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: 10.0),
+//              child: FlatButton.icon(
+//                color: Colors.indigo,
+//                textColor: Colors.white,
+//                icon: Icon(Icons.file_download),
+//                padding: EdgeInsets.all(10.0),
+//                label: Text(
+//                  'Download',
+//                  style: TextStyle(fontSize: 16.0),
+//                ),
+//                //`Text` to display
+//                onPressed: () async {
+//                  _onLoading(true, "");
+//
+//                  File originalVideoFile = File(widget.videoFile);
+//                  Directory directory = await getExternalStorageDirectory();
+//                  if (!Directory("${directory.path}/Downloaded Status/Videos")
+//                      .existsSync()) {
+//                    Directory("${directory.path}/Downloaded Status/Videos")
+//                        .createSync(recursive: true);
+//                  }
+//                  String path = directory.path;
+//                  String curDate = DateTime.now().toString();
+//                  String newFileName =
+//                      "$path/Downloaded Status/Videos/VIDEO-$curDate.mp4";
+//                  print(newFileName);
+//                  await originalVideoFile.copy(newFileName);
+//
+//                  _onLoading(false, "You can find all downloaded videos at");
+//                },
+//              ),
+//            ),
 //            Container(
 //              child: StatusVideoNetwork(
 //                videoPlayerController: VideoPlayerController.network(url ),
@@ -149,11 +239,11 @@ String url="https://flutter.github.io/assets-for-api-docs/assets/videos/butterfl
           ],
         ),
       ),
-    ); 
+    );
   }
 }
-class StatusVideoNetwork extends StatefulWidget {
 
+class StatusVideoNetwork extends StatefulWidget {
   final VideoPlayerController videoPlayerController;
   final bool looping;
   final String videoSrc;
@@ -165,7 +255,7 @@ class StatusVideoNetwork extends StatefulWidget {
     this.videoSrc,
     this.aspectRatio,
     Key key,
-  }): super(key:key);
+  }) : super(key: key);
 
   @override
   _StatusVideoNetworkState createState() => _StatusVideoNetworkState();
@@ -182,17 +272,18 @@ class _StatusVideoNetworkState extends State<StatusVideoNetwork> {
 
     _chewieController = ChewieController(
         videoPlayerController: widget.videoPlayerController,
-        autoInitialize:true,
+        autoInitialize: true,
         looping: widget.looping,
         allowFullScreen: true,
-        aspectRatio: 6/9,
+        aspectRatio: 6 / 9,
         //autoPlay: true,
-        errorBuilder: (context, errorMessage){
-          return Center(child: Text(errorMessage),);
-        }
-    );
-
+        errorBuilder: (context, errorMessage) {
+          return Center(
+            child: Text(errorMessage),
+          );
+        });
   }
+
 //  void checkVideo() {
 //    // Implement your calls inside these conditions' bodies :
 //    if (widget.videoPlayerController.value.position ==
@@ -215,7 +306,7 @@ class _StatusVideoNetworkState extends State<StatusVideoNetwork> {
 //  }
   @override
   Widget build(BuildContext context) {
-   // print("dur"+widget.videoPlayerController.value.position.toString());
+    // print("dur"+widget.videoPlayerController.value.position.toString());
     return Container(
       padding: EdgeInsets.only(top: 0),
       child: Column(
@@ -224,7 +315,7 @@ class _StatusVideoNetworkState extends State<StatusVideoNetwork> {
           Container(
             padding: EdgeInsets.only(top: 0),
             child: AspectRatio(
-              aspectRatio: 6/10,
+              aspectRatio: 6 / 10,
               child: Chewie(
                 controller: _chewieController,
               ),

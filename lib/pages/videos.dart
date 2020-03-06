@@ -122,16 +122,31 @@ class _VideoGridState extends State<VideoGrid> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                                      child: RaisedButton(
-                                        child: Text("Play Video"),
-                                        color: Colors.indigo,
-                                        textColor: Colors.white,
-                                        onPressed: () {
-                                          Navigator.push(context, new MaterialPageRoute(
-                                              builder: (context)=>new PlayStatusVideo(videoList[index])
-                                          ),);
-                                        },
+                                      padding: const EdgeInsets.only(left: 10.0, right: 10.0,top: 10),
+                                      child:   Container(
+                                        decoration: BoxDecoration(
+                                            color:Color(0xffb7d8cf) ,
+                                            borderRadius: BorderRadius.circular(100.0),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                  color: Color(0XFF6a9172),
+                                                  offset: Offset(6, 2),
+                                                  blurRadius: 6.0,
+                                                  spreadRadius: 3.0
+                                              ),
+                                              BoxShadow(
+                                                  color: Color (0XFF6a9172),
+                                                  offset: Offset(-6, -2),
+                                                  blurRadius: 6.0,
+                                                  spreadRadius: 3.0
+                                              )
+                                            ]
+                                        ),
+                                        child: ListTile(
+                                          contentPadding: EdgeInsets.only(left: 130),
+                                          title: Text("Play Now",style: TextStyle(fontStyle: FontStyle.italic,color: Colors.redAccent,
+                                              fontWeight: FontWeight.bold, fontSize: 20),),
+                                        ),
                                       ),
                                     ),
                                   ]
